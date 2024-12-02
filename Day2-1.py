@@ -27,7 +27,6 @@ def check_report(report):
 #read input
 with open("inputDay2", "r") as input:
     for line in input:
-        mode = "" # a for ascending, d for descending
         numbers = [int(number) for number in line.split(" ")]
         list_of_reports.append(numbers)
 
