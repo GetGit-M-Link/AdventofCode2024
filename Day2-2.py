@@ -40,7 +40,22 @@ for report in list_of_reports:
    else:
        add_to_dampener.append(report)
 
-#for report in add_to_dampener:
+
+for report in add_to_dampener:
+    dampener = []
+    for index, item in enumerate(report):
+        #print(f"{index}: {report}\n")
+        altered_report = []
+        for i, element in enumerate(report):
+            if i != index:
+                altered_report.append(element)
+        dampener.append(altered_report)
+    for report in dampener:
+        if check_report(report):
+            number_of_safe_reports += 1
+            break
+
+
 
 
 
