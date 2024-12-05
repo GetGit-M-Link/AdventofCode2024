@@ -129,12 +129,10 @@ list_of_M = check_around(list_of_X, "M", lines)
 list_of_A = []
 for m in list_of_M:
     if a := check_at(m[0], m[1], m[2],"A", lines): list_of_A.append(a)
-    #list_of_A.append(check_at(m[0], m[1], m[2],"A", lines) if not None)
 
 list_of_S = []
 for a in list_of_A:
     if s := check_at(a[0], a[1], a[2],"S", lines): list_of_S.append(s)
-    #list_of_S += filter(None, (check_at(a[0], a[1], a[2],"S", lines)))
 
 print(rows, columns)
 print(len(list_of_S))
