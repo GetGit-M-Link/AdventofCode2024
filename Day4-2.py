@@ -2,7 +2,7 @@ rows = 0
 columns = 0
 current_row = 0
 current_column = 0
-list_of_X = []
+list_of_A = []
 
 def left(position, size_x, size_y):
     if position[0] > 0:
@@ -92,7 +92,9 @@ def check_at(x, y, direction,letter_to_look_for, puzzle):
     elif direction == 9:
         check_coord = (right_up(position, size_x, size_y))
     if check_coord is not None and puzzle[check_coord[1]][check_coord[0]] == letter_to_look_for:
-        return check_coord
+        return True
+    else:
+        return False
 
 def check_around(list_of_X, letter_to_look_for, puzzle):
     #triple: x,y,direction direction= numpad number,  5 is the middle
@@ -115,26 +117,20 @@ with open("Day4input", "r") as input:
             if columns == 0:
                 columns = len(line)
             for letter in line:
-                if letter == "X":
-                    list_of_X.append((current_column,current_row))
-                    print(f"Found X at {current_column},{current_row}")
+                if letter == "A":
+                    list_of_A.append((current_column,current_row))
+                    print(f"Found A at {current_column},{current_row}")
                 current_column += 1
             current_column = 0
             current_row += 1
 
-list_of_M = []
-list_of_M = check_around(list_of_X, "M", lines)
-
-
-list_of_A = []
-for m in list_of_M:
-    if a := check_at(m[0], m[1], m[2],"A", lines): list_of_A.append(a)
-    #list_of_A.append(check_at(m[0], m[1], m[2],"A", lines) if not None)
-
-list_of_S = []
+x_mas_count = 0
 for a in list_of_A:
-    if s := check_at(a[0], a[1], a[2],"S", lines): list_of_S.append(s)
-    #list_of_S += filter(None, (check_at(a[0], a[1], a[2],"S", lines)))
+    if (((check_at(a[0], a[1], 9,"M", lines) and check_at(a[0], a[1], 1,"S", lines)) or (check_at(a[0], a[1], 9,"S", lines) and check_at(a[0], a[1], 1,"M", lines))) and ((check_at(a[0], a[1], 7,"M", lines) and check_at(a[0], a[1], 3,"S", lines)) or (check_at(a[0], a[1], 7,"S", lines) and check_at(a[0], a[1], 3,"M", lines)))):
+        x_mas_count += 1
 
-print(rows, columns)
-print(len(list_of_S))
+
+
+
+
+print(x_mas_count)
